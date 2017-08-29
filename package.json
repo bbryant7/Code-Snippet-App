@@ -1,0 +1,19 @@
+{
+  "name": "code-organizer",
+  "version": "1.0.0",
+  "description": "References: https://newline.theironyard.com/cohorts/18/courses/10/objective_lessons/161 https://github.com/bbryant7/bef-week2-day3-mongoose-lecture https://github.com/bbryant7/kitten-adoption [] create app.js file [] create models folder for schema [] create schema [] create views folder and mustache files [] install   -Mongoose   -blue bird   -Express   -mustache Express   -mustache   -body parser [] include boiler plate [] connect models file: module.exports example const kitten = mongoose.model('kitten', kittenSchema); module.exports = kitten; [] create get and connect to mustache files [] create login page, directs to home page [] home page - renders all snippets [] create drop down menu of languages and submit button [] submit button directs to a specific filter of the snippets (title) [] give each snippet a link - directs to a render of that specific snippet [] create form   -adds snippet to renders [] create \"tag\" form",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.10.8",
+    "mustache": "^2.3.0",
+    "mustache-express": "^1.2.5"
+  }
+}
