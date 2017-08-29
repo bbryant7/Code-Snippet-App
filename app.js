@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 
 
 app.get('/', function(req, res) {
-res.send('Hi :)');
+res.render('display-snippet');
 
 });
 

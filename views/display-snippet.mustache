@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Code Snippets</title>
+  </head>
+  <body>
+    <h1>Code Snippets</h1>
+    <h3> Filter by language:</h3>
+    <form id="search-language" action="" method="post">
+      <select>
+        <option value="javascript">JavaScript</option>
+        <option value="java">Java</option>
+        <option value="Ruby">Ruby</option>
+        <option value="HTML">HTML</option>
+        <option value="CSS">CSS</option>
+      </select>
+    </form>
+    <br>
+    <h3> Filter by tag: </h3>
+    <form id="search-tag" action="" method="post">
+      <input type="text" name="tags" placeholder="tags">
+      <br>
+      <button type="submit" name="submit">Submit</button>
+    </form>
+    <br>
+    <h3> Ready to add a snippet? </h3>
+      <form id="create-new" action="/add" method="post">
+        <input type="text" name="title" placeholder="Snippet Title">
+        <br>
+        <select>
+          <option value="javascript">JavaScript</option>
+          <option value="java">Java</option>
+          <option value="Ruby">Ruby</option>
+          <option value="HTML">HTML</option>
+          <option value="CSS">CSS</option>
+        </select>
+        <br>
+        <textarea rows="4" cols="50" placeholder="Code Snippet...">
+        </textarea>
+        <br>
+        <textarea rows="4" cols="50" placeholder="Extra Details (optional)">
+        </textarea>
+        <br>
+        <input type="text" name="tags" placeholder="tags">
+        <br>
+        <button type="submit" name="submit">Submit</button>
+      </form>
+      <hr>
+      <div id="results">
+      </div>
+  </body>
+</html>
