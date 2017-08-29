@@ -4,7 +4,6 @@ https://github.com/bbryant7/bef-week2-day3-mongoose-lecture
 https://github.com/bbryant7/kitten-adoption
 [X] create app.js file
 [X] create models folder for schema
-[] create db
 [] create schema
 [X] create views folder and mustache files
 [X] install

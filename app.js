@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-// mongoose.connect('mongodb://localhost:27017/DBHERE');
+mongoose.connect('mongodb://localhost:27017/snippetdb');
 const express = require('express');
 const mustacheExpress = require('mustache-express');
 const bodyParser = require('body-parser');
+const snippetSchema = require('./models/snippet')
 const app = express();
 
 app.engine('mustache', mustacheExpress());
