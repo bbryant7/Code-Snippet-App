@@ -7,21 +7,23 @@
   <body>
     <h1>Code Snippets</h1>
     <h3> Filter by language:</h3>
-    <form id="search-language" action="" method="post">
-      <select>
+    <form id="search-language" action="/filterlanguage" method="post">
+      <select name="filterlanguage">
         <option value="javascript">JavaScript</option>
         <option value="java">Java</option>
         <option value="Ruby">Ruby</option>
         <option value="HTML">HTML</option>
         <option value="CSS">CSS</option>
       </select>
+      <br>
+      <button type="submit" name="submit">Filter By Language</button>
     </form>
     <br>
     <h3> Filter by tag: </h3>
     <form id="search-tag" action="" method="post">
       <input type="text" name="tags" placeholder="tags">
       <br>
-      <button type="submit" name="submit">Submit</button>
+      <button type="submit" name="submit">Filter By Tag</button>
     </form>
     <br>
     <h3> Ready to add a snippet? </h3>
@@ -49,23 +51,7 @@
       <hr>
       <div id="results">
       {{#available}}
-        <div style="border: 1px solid orange">
-        <div>
-        <p> <a href="#">{{title}}!</a></p>
-        </div>
-        <div>
-        <p> {{body}} </p>
-        </div>
-        <div>
-        <p> {{detail}} </p>
-        </div>
-        <div>
-        <p> {{language}} </p>
-        </div>
-        <div>
-        <p> {{tag}} </p>
-        </div>
-      </div>
+        <p> <a href="#">{{title}}</a></p>
         {{/available}}
     </div>
 

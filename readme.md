@@ -19,9 +19,9 @@ example
 const kitten = mongoose.model('kitten', kittenSchema);
 module.exports = kitten;
 [X] create get and connect to mustache files
-[] create login page, directs to home page
-[] home page - renders all snippets
-[] create drop down menu of languages and submit button
+[X] create login page, directs to home page
+[X] home page - renders all snippets
+[X] create drop down menu of languages and submit button
 [] submit button directs to a specific filter of the snippets (title)
 [] give each snippet a link - directs to a render of that specific snippet
 [] create form
@@ -43,10 +43,11 @@ tags -- that is, user-defined words or phrases that classify the code, like "aut
 Your application must:
 
 
-have registration and login*
-allow you to create a snippet
-allow you to see a list of all your snippets
-allow you to see a list of all your snippets for a specific language
+[ ]create login page
+[ ] create registration page
+[X]allow you to create a snippet
+[X]allow you to see a list of all your snippets
+[X]allow you to see a list of all your snippets for a specific language
 allow you to see a list of all your snippets for a specific tag
 allow you to look at an individual snippet
-have an API to allow for creating and viewing of snippets as listed above
+[X]have an API to allow for creating and viewing of snippets as listed above
