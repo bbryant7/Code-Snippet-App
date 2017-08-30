@@ -48,6 +48,26 @@
       </form>
       <hr>
       <div id="results">
+      {{#available}}
+        <div style="border: 1px solid orange">
+        <div>
+        <p> <a href="#">{{title}}!</a></p>
+        </div>
+        <div>
+        <p> {{body}} </p>
+        </div>
+        <div>
+        <p> {{detail}} </p>
+        </div>
+        <div>
+        <p> {{language}} </p>
+        </div>
+        <div>
+        <p> {{tag}} </p>
+        </div>
       </div>
+        {{/available}}
+    </div>
+
   </body>
 </html>

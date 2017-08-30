@@ -15,10 +15,37 @@ app.use(bodyParser.urlencoded({
 }));
 
 
+// const snippetTest1 = new snippetSchema({
+//   title: "Snippet Test1",
+//   body: "first entry into snippetDB",
+//   language: "HTML",
+//   tag: ["frontend", "skjdfhsdl", "meow"]
+// })
+//
+// const snippetTest2 = new snippetSchema({
+//   title: "modules boiler plate code for Mustache and Body-parser",
+//   body: "app.engine('mustache', mustacheExpress()); app.set('views', './views') app.set('view engine', 'mustache') app.use(bodyParser.urlencoded({extended: false}));",
+//   language: 'Javascript',
+//   tag: ['modules', 'mustache']
+// })
+//
+//  snippetTest2.save()
+//     .then(function() {
+//     console.log('saved ' + snippetTest2);
+//   }).catch(function(error) {
+//   console.log('error ' + JSON.stringify(error));
+//  })
+
+
 app.get('/', function(req, res) {
-res.render('display-snippet');
+snippetSchema.find().then(function(snippets){
+res.render('display-snippet', {available: snippets});
+
+})
 
 });
+
+
 
 app.listen(3000, function() {
   console.log('Successfully started express application!');

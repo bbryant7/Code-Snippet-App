@@ -4,7 +4,7 @@ https://github.com/bbryant7/bef-week2-day3-mongoose-lecture
 https://github.com/bbryant7/kitten-adoption
 [X] create app.js file
 [X] create models folder for schema
-[] create schema
+[X] create schema
 [X] create views folder and mustache files
 [X] install
   -Mongoose
@@ -14,11 +14,11 @@ https://github.com/bbryant7/kitten-adoption
   -mustache
   -body parser
 [X] include boiler plate
-[] connect models file: module.exports
+[X] connect models file: module.exports
 example
 const kitten = mongoose.model('kitten', kittenSchema);
 module.exports = kitten;
-[] create get and connect to mustache files
+[X] create get and connect to mustache files
 [] create login page, directs to home page
 [] home page - renders all snippets
 [] create drop down menu of languages and submit button
