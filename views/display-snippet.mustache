@@ -28,7 +28,7 @@
       <form id="create-new" action="/add" method="post">
         <input type="text" name="title" placeholder="Snippet Title">
         <br>
-        <select>
+        <select name="language">
           <option value="javascript">JavaScript</option>
           <option value="java">Java</option>
           <option value="Ruby">Ruby</option>
@@ -36,13 +36,13 @@
           <option value="CSS">CSS</option>
         </select>
         <br>
-        <textarea rows="4" cols="50" placeholder="Code Snippet...">
+        <textarea rows="4" cols="50" placeholder="Code Snippet..." name="body">
         </textarea>
         <br>
-        <textarea rows="4" cols="50" placeholder="Extra Details (optional)">
+        <textarea rows="4" cols="50" placeholder="Extra Details (optional)" name="detail">
         </textarea>
         <br>
-        <input type="text" name="tags" placeholder="tags">
+        <input type="text" name="tag" placeholder="tags">
         <br>
         <button type="submit" name="submit">Submit</button>
       </form>

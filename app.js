@@ -45,6 +45,32 @@ res.render('display-snippet', {available: snippets});
 
 });
 
+app.post("/add", function(req, res) {
+  let newTitle = req.body.title;
+  let newBody = req.body.body;
+  let newDetail = req.body.detail;
+  let newLanguage = req.body.language;
+  let newTag = req.body.tag;
+
+  const newSnippet = new snippetSchema({
+    title: newTitle,
+    body: newBody,
+    detail: newDetail,
+    language: newLanguage,
+    tag: newTag
+  })
+
+  newSnippet.save()
+  .then(function() {
+    return snippetSchema.find()
+  })
+  .then(function(snippets) {
+    res.render('display-snippet', {
+      available: snippets})
+
+  })
+
+});
 
 
 app.listen(3000, function() {
