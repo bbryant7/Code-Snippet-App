@@ -22,17 +22,14 @@ module.exports = kitten;
 [X] create login page, directs to home page
 [X] home page - renders all snippets
 [X] create drop down menu of languages and submit button
-[]create link to render specific one - do a findOne() for that title on the link button
+[X]create link to render specific one - do a findOne() for that title on the link button
 [] force user to create one tag at a time
 [] display tags on page (push to tag array)
 [] submit tag array to schema when sending form
 [] use code mirror to make code text look pretty
-[]read passport to create registration
+[] read passport to create registration
   -push registration info to the login array
 [] submit button directs to a specific filter of the snippets (title)
-[] give each snippet a link - directs to a render of that specific snippet
-[] create form
-  -adds snippet to renders
 [] create "tag" form
 
 

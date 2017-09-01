@@ -55,7 +55,7 @@ app.use(session({
 //   }).catch(function(error) {
 //   console.log('error ' + JSON.stringify(error));
 //  })
-
+// HOME PAGE
 app.get('/', function(req, res) {
   snippetSchema.find().then(function(snippets) {
     res.render('home', {
@@ -65,7 +65,7 @@ app.get('/', function(req, res) {
   })
 
 });
-
+// FOLLOW LINK TO SNIPPET DETAILS
 app.get('/snippet/:id', function(req, res){
   snippetSchema.findOne().where({_id: (req.params.id)}).then(function(snippet){
     res.render('snippet'
@@ -73,7 +73,7 @@ app.get('/snippet/:id', function(req, res){
   })
   console.log(req.params.id);
 });
-
+// LOGIN PAGE
 // app.post('/login',function(req,res){
 //
 //   for (var i = 0; i < data.length; i++) {
@@ -93,13 +93,13 @@ app.get('/snippet/:id', function(req, res){
 // }
 // })
 
-
+// ADD SNIPPET
 app.post("/add", function(req, res) {
   let newTitle = req.body.title;
   let newBody = req.body.body;
   let newDetail = req.body.detail;
   let newLanguage = req.body.language;
-  let newTag = req.body.tag;
+  let newTag = req.body.tag.split(",");
 
   const newSnippet = new snippetSchema({
     title: newTitle,
@@ -122,6 +122,7 @@ app.post("/add", function(req, res) {
 
 });
 
+// FILTER BY LANGUAGE
 app.post("/filterlanguage", function(req, res) {
   let filterLanguage = req.body.filterlanguage;
   snippetSchema.find({
@@ -132,6 +133,22 @@ app.post("/filterlanguage", function(req, res) {
     });
   })
 });
+
+// FILTER BY TAG
+
+app.post("/filtertagform", function(req, res) {
+  let filtertag = req.body.filtertag;
+  snippetSchema.find({
+    tag: filtertag
+  }).then(function(snippets) {
+    res.render('home', {
+      available: snippets
+    });
+  })
+});
+
+
+
 
 
 app.listen(3000, function() {

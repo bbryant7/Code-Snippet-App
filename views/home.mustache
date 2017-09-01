@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>Code Snippets</h1>
-    
+
     <h3> Filter by language:</h3>
     <form id="search-language" action="/filterlanguage" method="post">
       <select name="filterlanguage">
@@ -22,8 +22,8 @@
 
     <br>
     <h3> Filter by tag: </h3>
-    <form id="search-tag" action="" method="post">
-      <input type="text" name="tags" placeholder="tags">
+    <form id="search-tag" action="filtertagform" method="post">
+      <input type="text" name="filtertag" placeholder="tags">
       <br>
       <button type="submit" name="submit">Filter By Tag</button>
     </form>
@@ -46,9 +46,14 @@
         <textarea rows="4" cols="50" placeholder="Extra Details (optional)" name="detail">
         </textarea>
         <br>
+        <!-- <form action="/" method="post"> -->
         <input type="text" name="tag" placeholder="tags">
+        <!-- <button type="submit" name="addTag"> Add Tag </button>
+        </form> -->
         <br>
+
         <button type="submit" name="submit">Submit</button>
+
       </form>
       <hr>
 
