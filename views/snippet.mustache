@@ -25,6 +25,9 @@
     <div>
     <p> {{tag}} </p>
     </div>
+    <form action="/delete/{{id}}" method="post">
+    <button type="submit" name="delete"> Delete Snippet </button>
+    </form>
     </div>
     {{/available}}
   </body>

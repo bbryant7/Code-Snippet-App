@@ -122,6 +122,17 @@ app.post("/add", function(req, res) {
 
 });
 
+// Delete
+app.post("/delete/:id", function(req, res) {
+  snippetSchema.deleteOne().where({_id: (req.params.id)})
+  .then(function(){
+    return snippetSchema.find()
+  })
+  .then(function(snippet){res.render('home', {available: snippet})
+  })
+
+});
+
 // FILTER BY LANGUAGE
 app.post("/filterlanguage", function(req, res) {
   let filterLanguage = req.body.filterlanguage;
