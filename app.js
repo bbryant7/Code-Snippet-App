@@ -8,7 +8,14 @@ const mustacheExpress = require('mustache-express');
 const bodyParser = require('body-parser');
 const snippetSchema = require('./models/snippet')
 const app = express();
-const data = [{username:"kitty", password:"unicorn"}]
+let data = [{
+  username:"kitty",
+  password:"unicorn"
+}, {
+  username:"bailey",
+  password:"poop"
+}];
+
 
 app.engine('mustache', mustacheExpress());
 app.set('views', './views')
@@ -23,39 +30,25 @@ app.use(session({
   saveUninitialized: true
 }))
 
-// app.use(function (req, res, next) {
-//   console.log('in interceptor');
-//   if (req.url === '/login') {
-//     next()
-//   } else if (!req.session.username) {
-//     res.render('login')
-//   } else {
-//     next()
-//   }
-// })
+app.use(function (req, res, next) {
+  console.log('in interceptor');
+  if (req.url === '/login') {
+    next()
+    console.log(1);
+  } else if (req.url === '/registration'){
+    next()
+    console.log(4);
+  }else if (!req.session.username) {
+    console.log(2);
+    res.render('login')
 
+  } else {
+      console.log(3);
+    next()
+  }
+})
 
-// const snippetTest1 = new snippetSchema({
-//   title: "Snippet Test1",
-//   body: "first entry into snippetDB",
-//   language: "HTML",
-//   tag: ["frontend", "skjdfhsdl", "meow"]
-// })
-//
-// const snippetTest2 = new snippetSchema({
-//   title: "modules boiler plate code for Mustache and Body-parser",
-//   body: "app.engine('mustache', mustacheExpress()); app.set('views', './views') app.set('view engine', 'mustache') app.use(bodyParser.urlencoded({extended: false}));",
-//   language: 'Javascript',
-//   tag: ['modules', 'mustache']
-// })
-//
-//  snippetTest2.save()
-//     .then(function() {
-//     console.log('saved ' + snippetTest2);
-//   }).catch(function(error) {
-//   console.log('error ' + JSON.stringify(error));
-//  })
-// HOME PAGE
+// HOME PAGE - with list of snippets
 app.get('/', function(req, res) {
   snippetSchema.find().then(function(snippets) {
     res.render('home', {
@@ -65,7 +58,9 @@ app.get('/', function(req, res) {
   })
 
 });
+
 // FOLLOW LINK TO SNIPPET DETAILS
+
 app.get('/snippet/:id', function(req, res){
   snippetSchema.findOne().where({_id: (req.params.id)}).then(function(snippet){
     res.render('snippet'
@@ -73,27 +68,44 @@ app.get('/snippet/:id', function(req, res){
   })
   console.log(req.params.id);
 });
+
 // LOGIN PAGE
-// app.post('/login',function(req,res){
-//
-//   for (var i = 0; i < data.length; i++) {
-//     if (req.body.username === data[i].username && req.body.password === data[i].password){
-//       req.session.username = req.body.username
-//       snippetSchema.find().then(function(snippets) {
-//         res.render('home', {
-//           available: snippets
-//         });
-//
-//       })
-//     }else{
-//       res.render('login',{error:"Invalid username or password"})
-//
-//     }
-//
-// }
-// })
+app.post('/login',function(req,res){
+
+  for (var i = 0; i < data.length; i++) {
+    if (req.body.username === data[i].username && req.body.password === data[i].password){
+      req.session.username = req.body.username
+    }
+  }
+
+  if(req.session.username === req.body.username){
+      snippetSchema.find().then(function(snippets) {
+        res.render('home', {available: snippets});
+        console.log("correct Password");
+      })
+    } else{
+      res.render('login', {error: "Incorrect username or password."});
+      console.log("wrong password");
+    }
+
+})
+
+
+// registration
+
+app.post('/registration',function(req,res){
+  data.push({username: req.body.regusername, password: req.body.regpassword})
+  req.session.username = req.body.regusername
+  snippetSchema.find()
+    .then(function(snippets) {
+    res.render('home', {
+      available: snippets
+    });
+})
+})
 
 // ADD SNIPPET
+
 app.post("/add", function(req, res) {
   let newTitle = req.body.title;
   let newBody = req.body.body;
@@ -122,7 +134,8 @@ app.post("/add", function(req, res) {
 
 });
 
-// Delete
+// DELETE
+
 app.post("/delete/:id", function(req, res) {
   snippetSchema.deleteOne().where({_id: (req.params.id)})
   .then(function(){
@@ -134,6 +147,7 @@ app.post("/delete/:id", function(req, res) {
 });
 
 // FILTER BY LANGUAGE
+
 app.post("/filterlanguage", function(req, res) {
   let filterLanguage = req.body.filterlanguage;
   snippetSchema.find({
@@ -157,8 +171,6 @@ app.post("/filtertagform", function(req, res) {
     });
   })
 });
-
-
 
 
 

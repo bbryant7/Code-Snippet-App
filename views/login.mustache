@@ -6,6 +6,7 @@
   </head>
   <body>
 <h1> Login here </h1>
+<p style="color:red"> {{error}} </p>
 <form action="/login" method="post">
     <label>UserName</label>
     <input type="text" name="username" placeholder="Username">
@@ -18,11 +19,11 @@
 <!--  Maybe do a link here-->
 <h1> Never visited us before? </h1>
 <h3> Register here: </h3>
-<form action="/login" method="post">
+<form action="/registration" method="post">
     <label>UserName</label>
-    <input type="text" name="username" placeholder="Username">
+    <input type="text" name="regusername" placeholder="Username">
     <label>Password</label>
-    <input type="password" name="password" placeholder="password">
+    <input type="password" name="regpassword" placeholder="password">
     <button type="submit" name="button"> Submit</button>
   </form>
 
