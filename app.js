@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://localhost:27017/snippetdb');
-// const objectId = require('mongodb').ObjectID;
 const express = require('express');
 const session = require('express-session');
 const mustacheExpress = require('mustache-express');
@@ -9,11 +8,14 @@ const bodyParser = require('body-parser');
 const snippetSchema = require('./models/snippet')
 const app = express();
 let data = [{
-  username:"kitty",
-  password:"unicorn"
+  username: "kitty",
+  password: "unicorn"
 }, {
-  username:"bailey",
-  password:"poop"
+  username: "bailey",
+  password: "password"
+}, {
+  username: "apple",
+  password: "banana"
 }];
 
 
@@ -30,20 +32,20 @@ app.use(session({
   saveUninitialized: true
 }))
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   console.log('in interceptor');
   if (req.url === '/login') {
     next()
     console.log(1);
-  } else if (req.url === '/registration'){
+  } else if (req.url === '/registration') {
     next()
     console.log(4);
-  }else if (!req.session.username) {
+  } else if (!req.session.username) {
     console.log(2);
     res.render('login')
 
   } else {
-      console.log(3);
+    console.log(3);
     next()
   }
 })
@@ -61,47 +63,57 @@ app.get('/', function(req, res) {
 
 // FOLLOW LINK TO SNIPPET DETAILS
 
-app.get('/snippet/:id', function(req, res){
-  snippetSchema.findOne().where({_id: (req.params.id)}).then(function(snippet){
-    res.render('snippet'
-    , {available: snippet})
+app.get('/snippet/:id', function(req, res) {
+  snippetSchema.findOne().where({
+    _id: (req.params.id)
+  }).then(function(snippet) {
+    res.render('snippet', {
+      available: snippet
+    })
   })
   console.log(req.params.id);
 });
 
 // LOGIN PAGE
-app.post('/login',function(req,res){
+app.post('/login', function(req, res) {
 
   for (var i = 0; i < data.length; i++) {
-    if (req.body.username === data[i].username && req.body.password === data[i].password){
+    if (req.body.username === data[i].username && req.body.password === data[i].password) {
       req.session.username = req.body.username
     }
   }
 
-  if(req.session.username === req.body.username){
-      snippetSchema.find().then(function(snippets) {
-        res.render('home', {available: snippets});
-        console.log("correct Password");
-      })
-    } else{
-      res.render('login', {error: "Incorrect username or password."});
-      console.log("wrong password");
-    }
+  if (req.session.username === req.body.username) {
+    snippetSchema.find().then(function(snippets) {
+      res.render('home', {
+        available: snippets
+      });
+      console.log("correct Password");
+    })
+  } else {
+    res.render('login', {
+      error: "Incorrect username or password."
+    });
+    console.log("wrong password");
+  }
 
 })
 
 
 // registration
 
-app.post('/registration',function(req,res){
-  data.push({username: req.body.regusername, password: req.body.regpassword})
+app.post('/registration', function(req, res) {
+  data.push({
+    username: req.body.regusername,
+    password: req.body.regpassword
+  })
   req.session.username = req.body.regusername
   snippetSchema.find()
     .then(function(snippets) {
-    res.render('home', {
-      available: snippets
-    });
-})
+      res.render('home', {
+        available: snippets
+      });
+    })
 })
 
 // ADD SNIPPET
@@ -111,7 +123,7 @@ app.post("/add", function(req, res) {
   let newBody = req.body.body;
   let newDetail = req.body.detail;
   let newLanguage = req.body.language;
-  let newTag = req.body.tag.split(",");
+  let newTag = req.body.tag.split(", ");
 
   const newSnippet = new snippetSchema({
     title: newTitle,
@@ -137,12 +149,17 @@ app.post("/add", function(req, res) {
 // DELETE
 
 app.post("/delete/:id", function(req, res) {
-  snippetSchema.deleteOne().where({_id: (req.params.id)})
-  .then(function(){
-    return snippetSchema.find()
-  })
-  .then(function(snippet){res.render('home', {available: snippet})
-  })
+  snippetSchema.deleteOne().where({
+      _id: (req.params.id)
+    })
+    .then(function() {
+      return snippetSchema.find()
+    })
+    .then(function(snippet) {
+      res.render('home', {
+        available: snippet
+      })
+    })
 
 });
 

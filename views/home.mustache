@@ -40,27 +40,26 @@
           <option value="CSS">CSS</option>
         </select>
         <br>
+        <p> Code Snippet </p>
         <textarea rows="4" cols="50" placeholder="Code Snippet..." name="body">
         </textarea>
         <br>
+        <p> Details </p>
         <textarea rows="4" cols="50" placeholder="Extra Details (optional)" name="detail">
         </textarea>
         <br>
-        <!-- <form action="/" method="post"> -->
         <input type="text" name="tag" placeholder="tags">
-        <!-- <button type="submit" name="addTag"> Add Tag </button>
-        </form> -->
         <br>
 
         <button type="submit" name="submit">Submit</button>
 
       </form>
       <hr>
-
       <div id="results">
-      {{#available}}
-        <p> <a href="/snippet/{{id}}">{{title}}</a></p>
-        {{/available}}
+    {{#available}}
+      <p> <a href="/snippet/{{id}}">{{title}}</a></p>
+      {{/available}}
+      </div>
     </div>
 
   </body>

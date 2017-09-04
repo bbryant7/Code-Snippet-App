@@ -23,18 +23,24 @@ module.exports = kitten;
 [X] home page - renders all snippets
 [X] create drop down menu of languages and submit button
 [X]create link to render specific one - do a findOne() for that title on the link button
-[] force user to create one tag at a time
-[] display tags on page (push to tag array)
-[] submit tag array to schema when sending form
+[X]-push registration info to the login array
+
 [] use code mirror to make code text look pretty
 [] read passport to create registration
-  -push registration info to the login array
-[] submit button directs to a specific filter of the snippets (title)
-[] create "tag" form
+
+ON alternative tag branch
+[X] force user to create one tag at a time
+[X] create "tag" form
+[X] display tags on page (push to tag array)
+[X] submit tag array to schema when sending form
 
 
 
 
+
+
+
+ASSIGNMENT DETAILS:
 Using Express and Mongoose, create an application that organizes code snippets that you save for later use.
 
 At a minimum, snippets should have:
@@ -48,10 +54,10 @@ Your application must:
 
 
 [X]create login page
-[ ] create registration page
+[X] create registration page
 [X]allow you to create a snippet
 [X]allow you to see a list of all your snippets
 [X]allow you to see a list of all your snippets for a specific language
-allow you to see a list of all your snippets for a specific tag
-allow you to look at an individual snippet
+[X]allow you to see a list of all your snippets for a specific tag
+[X] allow you to look at an individual snippet
 [X]have an API to allow for creating and viewing of snippets as listed above
