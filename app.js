@@ -98,14 +98,18 @@ app.post('/login', function(req, res) {
   }
 
 })
-
+// link to registration page
+app.get('/registration', function(req, res) {
+    res.render('registration')
+});
 
 // registration
 
 app.post('/registration', function(req, res) {
+  if (req.body.regpassword === req.body.confirmpassword) {
   data.push({
     username: req.body.regusername,
-    password: req.body.regpassword
+    password: req.body.confirmpassword
   })
   req.session.username = req.body.regusername
   snippetSchema.find()
@@ -114,6 +118,10 @@ app.post('/registration', function(req, res) {
         available: snippets
       });
     })
+
+} else {
+  res.render('registration',{passerror: "Password does not match."})
+}
 })
 
 // ADD SNIPPET
