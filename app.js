@@ -6,16 +6,21 @@ const express = require('express');
 const session = require('express-session');
 const mustacheExpress = require('mustache-express');
 const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
 const snippetSchema = require('./models/snippet')
 const app = express();
+const userInfo = require('./models/userinfo');
+let tagsArray = [];
 let data = [{
   username:"kitty",
   password:"unicorn"
 }, {
   username:"bailey",
-  password:"poop"
+  password:"password"
+},{
+  username:"applesauce",
+  password:"peaches"
 }];
-
 
 app.engine('mustache', mustacheExpress());
 app.set('views', './views')
@@ -23,6 +28,7 @@ app.set('view engine', 'mustache')
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+app.use(expressValidator());
 
 app.use(session({
   secret: 'keyboard cat',
@@ -111,14 +117,14 @@ app.post("/add", function(req, res) {
   let newBody = req.body.body;
   let newDetail = req.body.detail;
   let newLanguage = req.body.language;
-  let newTag = req.body.tag.split(",");
+  // let newTag = req.body.tag.split(",");
 
   const newSnippet = new snippetSchema({
     title: newTitle,
     body: newBody,
     detail: newDetail,
     language: newLanguage,
-    tag: newTag
+    tag: tagsArray
   })
 
   newSnippet.save()
@@ -132,6 +138,31 @@ app.post("/add", function(req, res) {
 
     })
 
+});
+
+// ADD TAGS
+app.post("/taglist", function(req, res) {
+  req.checkBody('tag', "please add one tag at a time").isAlpha();
+  let errors = req.validationErrors();
+
+  if (errors) {
+    res.render("home", {
+      errors,
+      available: snippets,
+    });
+    console.log("error");
+  } else {
+  tagsArray.push(req.body.tag)
+  console.log(tagsArray)
+  snippetSchema.find().then(function(snippets) {
+      res.render('home', {
+        available: snippets,
+        list: tagsArray
+      })
+
+    })
+
+}
 });
 
 // DELETE
