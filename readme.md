@@ -7,13 +7,13 @@ https://github.com/bbryant7/bef-week2-day3-mongoose-lecture
 https://github.com/bbryant7/kitten-adoption
 
 Dependencies for project:
-`npm install bluebird`
-`npm install body-parser`
-`npm install express`
-`npm install express-session`
-`npm install mongoose`
-`npm install mustache`
-`npm install mustache-express`
+*`npm install bluebird`
+*`npm install body-parser`
+*`npm install express`
+*`npm install express-session`
+*`npm install mongoose`
+*`npm install mustache`
+*`npm install mustache-express`
 
 Steps to complete project:
 - [X] create app.js file
