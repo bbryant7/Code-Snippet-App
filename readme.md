@@ -7,13 +7,13 @@ https://github.com/bbryant7/bef-week2-day3-mongoose-lecture
 https://github.com/bbryant7/kitten-adoption
 
 Dependencies for project:
-*`npm install bluebird`
-*`npm install body-parser`
-*`npm install express`
-*`npm install express-session`
-*`npm install mongoose`
-*`npm install mustache`
-*`npm install mustache-express`
+`npm install bluebird`
+`npm install body-parser`
+`npm install express`
+`npm install express-session`
+`npm install mongoose`
+`npm install mustache`
+`npm install mustache-express`
 
 Steps to complete project:
 - [X] create app.js file
@@ -35,7 +35,7 @@ module.exports = kitten;
 
 To Do:
 - [ ] use code mirror to make code text look pretty
-force user to create one tag at a time
+- [ ] force user to create one tag at a time
 - [ ] create "tag" form
 - [ ] display tags on page (push to tag array)
 - [ ] submit tag array to schema when sending form
