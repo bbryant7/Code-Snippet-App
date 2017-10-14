@@ -51,22 +51,17 @@ app.use(function(req, res, next) {
   }
 })
 
-const Unicorn = new snippetSchema({
-  title: newTitle,
-  body: newBody,
+const unicorn = new userDataSchema({
+username: "kitty",
+  password:"unicorn",
 
 })
 
-newSnippet.save()
+unicorn.save()
   .then(function() {
-    return snippetSchema.find()
+    return userDataSchema.find()
   })
-  .then(function(snippets) {
-    res.render('home', {
-      available: snippets
-    })
 
-  })
 // HOME PAGE - with list of snippets
 app.get('/', function(req, res) {
   snippetSchema.find().then(function(snippets) {
