@@ -6,17 +6,18 @@ const session = require('express-session');
 const mustacheExpress = require('mustache-express');
 const bodyParser = require('body-parser');
 const snippetSchema = require('./models/snippet')
+const userDataSchema = require('./models/userinfo')
 const app = express();
-let data = [{
-  username: "kitty",
-  password: "unicorn"
-}, {
-  username: "bailey",
-  password: "password"
-}, {
-  username: "apple",
-  password: "banana"
-}];
+// let data = [{
+//   username: "kitty",
+//   password: "unicorn"
+// }, {
+//   username: "bailey",
+//   password: "password"
+// }, {
+//   username: "apple",
+//   password: "banana"
+// }];
 
 
 app.engine('mustache', mustacheExpress());
@@ -50,6 +51,22 @@ app.use(function(req, res, next) {
   }
 })
 
+const Unicorn = new snippetSchema({
+  title: newTitle,
+  body: newBody,
+
+})
+
+newSnippet.save()
+  .then(function() {
+    return snippetSchema.find()
+  })
+  .then(function(snippets) {
+    res.render('home', {
+      available: snippets
+    })
+
+  })
 // HOME PAGE - with list of snippets
 app.get('/', function(req, res) {
   snippetSchema.find().then(function(snippets) {
