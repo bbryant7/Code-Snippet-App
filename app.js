@@ -50,17 +50,17 @@ app.use(function(req, res, next) {
     next()
   }
 })
-
-const unicorn = new userDataSchema({
-username: "kitty",
-  password:"unicorn",
-
-})
-
-unicorn.save()
-  .then(function() {
-    return userDataSchema.find()
-  })
+// manually add user to db
+// const unicorn = new userDataSchema({
+// username: "kitty",
+//   password:"unicorn",
+//
+// })
+//
+// unicorn.save()
+//   .then(function() {
+//     return userDataSchema.find()
+//   })
 
 // HOME PAGE - with list of snippets
 app.get('/', function(req, res) {
@@ -88,13 +88,14 @@ app.get('/snippet/:id', function(req, res) {
 
 // LOGIN PAGE
 app.post('/login', function(req, res) {
-
-  for (var i = 0; i < data.length; i++) {
-    if (req.body.username === data[i].username && req.body.password === data[i].password) {
-      req.session.username = req.body.username
+  userDataSchema.findOne().where({
+      username: req.body.username,
+      password: req.body.password
+}) .then(function(results){
+    console.log(results);
+    if (results !== null){
+      req.session.username = req.body.username;
     }
-  }
-
   if (req.session.username === req.body.username) {
     snippetSchema.find().then(function(snippets) {
       res.render('home', {
@@ -108,29 +109,30 @@ app.post('/login', function(req, res) {
     });
     console.log("wrong password");
   }
-
+})
 })
 // link to registration page
 app.get('/registration', function(req, res) {
     res.render('registration')
 });
 
-// registration
+// REGISTRATION PAGE
 
 app.post('/registration', function(req, res) {
   if (req.body.regpassword === req.body.confirmpassword) {
-  data.push({
-    username: req.body.regusername,
-    password: req.body.confirmpassword
-  })
-  req.session.username = req.body.regusername
-  snippetSchema.find()
-    .then(function(snippets) {
-      res.render('home', {
-        available: snippets
-      });
+    const newUser = new userDataSchema({
+      username: req.body.username,
+      password: req.body.regpassword
     })
-
+    newUser.save()
+    .then(function(){
+      return snippetSchema.find()
+    })
+      .then(function(snippets) {
+        res.render('home', {
+          available: snippets
+        });
+      })
 } else {
   res.render('registration',{passerror: "Password does not match."})
 }
@@ -223,3 +225,26 @@ process.on('SIGINT', function() {
     process.exit(0);
   });
 });
+
+
+// app.post('/login', function(req, res) {
+//
+//   for (var i = 0; i < data.length; i++) {
+//     if (req.body.username === data[i].username && req.body.password === data[i].password) {
+//       req.session.username = req.body.username
+//     }
+//   }
+//
+//   if (req.session.username === req.body.username) {
+//     snippetSchema.find().then(function(snippets) {
+//       res.render('home', {
+//         available: snippets
+//       });
+//       console.log("correct Password");
+//     })
+//   } else {
+//     res.render('login', {
+//       error: "Incorrect username or password."
+//     });
+//     console.log("wrong password");
+//   }
