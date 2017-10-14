@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h3> Edit Snippet </h3>
+      <form id="create-new" action="/edit" method="post">
+        <input type="text" name="title" placeholder="Snippet Title">
+        <br>
+        <select name="language">
+          <option value="javascript">JavaScript</option>
+          <option value="java">Java</option>
+          <option value="Ruby">Ruby</option>
+          <option value="HTML">HTML</option>
+          <option value="CSS">CSS</option>
+        </select>
+        <br>
+        <p> Code Snippet </p>
+        <textarea rows="4" cols="50" placeholder="Code Snippet..." name="body">
+        </textarea>
+        <br>
+        <p> Details </p>
+        <textarea rows="4" cols="50" placeholder="Extra Details (optional)" name="detail">
+        </textarea>
+        <br>
+        <input type="text" name="tag" placeholder="tags">
+        <br>
+
+        <button type="submit" name="submit">Submit</button>
+
+      </form>
+
+  </body>
+</html>

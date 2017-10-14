@@ -8,17 +8,6 @@ const bodyParser = require('body-parser');
 const snippetSchema = require('./models/snippet')
 const userDataSchema = require('./models/userinfo')
 const app = express();
-// let data = [{
-//   username: "kitty",
-//   password: "unicorn"
-// }, {
-//   username: "bailey",
-//   password: "password"
-// }, {
-//   username: "apple",
-//   password: "banana"
-// }];
-
 
 app.engine('mustache', mustacheExpress());
 app.set('views', './views')
@@ -119,7 +108,7 @@ app.get('/registration', function(req, res) {
 // REGISTRATION PAGE
 
 app.post('/registration', function(req, res) {
-  if (req.body.regpassword === req.body.confirmpassword) {
+  // if (req.body.regpassword === req.body.confirmpassword) {
     const newUser = new userDataSchema({
       username: req.body.username,
       password: req.body.regpassword
@@ -133,9 +122,9 @@ app.post('/registration', function(req, res) {
           available: snippets
         });
       })
-} else {
-  res.render('registration',{passerror: "Password does not match."})
-}
+// } else {
+//   res.render('registration',{passerror: "Password does not match."})
+// }
 })
 
 // ADD SNIPPET
@@ -185,6 +174,11 @@ app.post("/delete/:id", function(req, res) {
 
 });
 
+// EDIT SNIPPET
+app.get("/edit", function(req, res) {
+      res.render('edit')
+    })
+
 // FILTER BY LANGUAGE
 
 app.post("/filterlanguage", function(req, res) {
@@ -225,26 +219,3 @@ process.on('SIGINT', function() {
     process.exit(0);
   });
 });
-
-
-// app.post('/login', function(req, res) {
-//
-//   for (var i = 0; i < data.length; i++) {
-//     if (req.body.username === data[i].username && req.body.password === data[i].password) {
-//       req.session.username = req.body.username
-//     }
-//   }
-//
-//   if (req.session.username === req.body.username) {
-//     snippetSchema.find().then(function(snippets) {
-//       res.render('home', {
-//         available: snippets
-//       });
-//       console.log("correct Password");
-//     })
-//   } else {
-//     res.render('login', {
-//       error: "Incorrect username or password."
-//     });
-//     console.log("wrong password");
-//   }
