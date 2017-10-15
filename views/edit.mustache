@@ -6,10 +6,10 @@
   </head>
   <body>
     <h3> Edit Snippet </h3>
-      <form id="create-new" action="/edit" method="post">
-        <input type="text" name="title" placeholder="Snippet Title">
+      <form id="edit-existing" action="/edit" method="post">
+        <input type="text" name="title" value="{{#available}}{{title}}{{/available}}">
         <br>
-        <select name="language">
+        <select name="language" value="{{#available}}{{language}}{{/available}}">
           <option value="javascript">JavaScript</option>
           <option value="java">Java</option>
           <option value="Ruby">Ruby</option>
@@ -18,14 +18,14 @@
         </select>
         <br>
         <p> Code Snippet </p>
-        <textarea rows="4" cols="50" placeholder="Code Snippet..." name="body">
+        <textarea rows="4" cols="50" value="{{#available}}{{body}}{{/available}}" name="body">{{#available}}{{body}}{{/available}}
         </textarea>
         <br>
         <p> Details </p>
-        <textarea rows="4" cols="50" placeholder="Extra Details (optional)" name="detail">
+        <textarea rows="4" cols="50" placeholder="Extra Details (optional)" name="detail" value="{{#available}}{{detail}}{{/available}}">{{#available}}{{detail}}{{/available}}
         </textarea>
         <br>
-        <input type="text" name="tag" placeholder="tags">
+        <input type="text" name="tag" placeholder="tags" value="{{#available}}{{tag}}{{/available}}">
         <br>
 
         <button type="submit" name="submit">Submit</button>

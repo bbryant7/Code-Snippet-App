@@ -174,10 +174,31 @@ app.post("/delete/:id", function(req, res) {
 
 });
 
-// EDIT SNIPPET
-app.get("/edit", function(req, res) {
-      res.render('edit')
+// EDIT SNIPPET PAGE
+app.get("/edit/:id", function(req, res) {
+  snippetSchema.findOne().where({
+    _id: (req.params.id)
+  }).then(function(snippet) {
+    res.render('edit', {
+      available: snippet
     })
+  })
+  console.log(req.params.id);
+});
+
+
+
+// get a specific snippet (id page)
+    app.get('/snippet/:id', function(req, res) {
+      snippetSchema.findOne().where({
+        _id: (req.params.id)
+      }).then(function(snippet) {
+        res.render('snippet', {
+          available: snippet
+        })
+      })
+      console.log(req.params.id);
+    });
 
 // FILTER BY LANGUAGE
 
