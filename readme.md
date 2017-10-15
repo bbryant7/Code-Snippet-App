@@ -40,8 +40,9 @@ module.exports = kitten;
 
 
 To Do:
-- [ ] give user ability to update code snippet
-- [ ] create user info collection, and add users to DB with registration page.
+- [X] give user ability to update code snippet
+- [X] create user info collection for login functionality
+- [ ] add users to DB with registration page.
 - [ ] use code mirror to make code text look pretty
 - [ ] force user to create one tag at a time
 - [ ] create "tag" form
