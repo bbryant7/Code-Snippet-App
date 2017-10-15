@@ -7,6 +7,7 @@ const mustacheExpress = require('mustache-express');
 const bodyParser = require('body-parser');
 const snippetSchema = require('./models/snippet')
 const userDataSchema = require('./models/userinfo')
+const ObjectId = require('mongodb').ObjectID;
 const app = express();
 
 app.engine('mustache', mustacheExpress());
@@ -186,19 +187,23 @@ app.get("/edit/:id", function(req, res) {
   console.log(req.params.id);
 });
 
+// EDIT SNIPPET
+app.post("/edit/:id", function(req, res){
+  snippetSchema.updateOne().where({
+    _id:(req.params.id)
+  }, {
+    title: req.body.edittitle,
+    body: req.body.editbody,
+    detail: req.body.editdetail,
+    language: req.body.editlanguage,
+    tag: req.body.edittag,
+  }).then(function(snippet) {
+    res.render('home', {
+      available: snippet
+  });
+});
+})
 
-
-// get a specific snippet (id page)
-    app.get('/snippet/:id', function(req, res) {
-      snippetSchema.findOne().where({
-        _id: (req.params.id)
-      }).then(function(snippet) {
-        res.render('snippet', {
-          available: snippet
-        })
-      })
-      console.log(req.params.id);
-    });
 
 // FILTER BY LANGUAGE
 

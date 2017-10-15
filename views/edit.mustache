@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--  TODO Dropdown menu of langugages do NOT currently hold the current value, autopopulates JS everytime on edite page. Need to fix-->
 <html>
   <head>
     <meta charset="utf-8">
@@ -6,10 +7,10 @@
   </head>
   <body>
     <h3> Edit Snippet </h3>
-      <form id="edit-existing" action="/edit" method="post">
-        <input type="text" name="title" value="{{#available}}{{title}}{{/available}}">
+      <form id="edit-existing" action="/edit/{{id}}" method="post">
+        <input type="text" name="edittitle" value="{{#available}}{{title}}{{/available}}">
         <br>
-        <select name="language" value="{{#available}}{{language}}{{/available}}">
+        <select name="editlanguage" value="{{#available}}{{language}}{{/available}}">
           <option value="javascript">JavaScript</option>
           <option value="java">Java</option>
           <option value="Ruby">Ruby</option>
@@ -18,11 +19,11 @@
         </select>
         <br>
         <p> Code Snippet </p>
-        <textarea rows="4" cols="50" value="{{#available}}{{body}}{{/available}}" name="body">{{#available}}{{body}}{{/available}}
+        <textarea rows="4" cols="50" value="{{#available}}{{body}}{{/available}}" name="editbody">{{#available}}{{body}}{{/available}}
         </textarea>
         <br>
         <p> Details </p>
-        <textarea rows="4" cols="50" placeholder="Extra Details (optional)" name="detail" value="{{#available}}{{detail}}{{/available}}">{{#available}}{{detail}}{{/available}}
+        <textarea rows="4" cols="50" placeholder="Extra Details (optional)" name="editdetail" value="{{#available}}{{detail}}{{/available}}">{{#available}}{{detail}}{{/available}}
         </textarea>
         <br>
         <input type="text" name="tag" placeholder="tags" value="{{#available}}{{tag}}{{/available}}">
