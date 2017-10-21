@@ -111,7 +111,7 @@ app.get('/registration', function(req, res) {
 app.post('/registration', function(req, res) {
   // if (req.body.regpassword === req.body.confirmpassword) {
     const newUser = new userDataSchema({
-      username: req.body.username,
+      username: req.body.regusername,
       password: req.body.regpassword
     })
     newUser.save()

@@ -7,14 +7,13 @@
   </head>
   <body>
     <h1> Register here: </h1>
+    <p style="color:red;">{{passerror}} </p>
 <form action="/registration" method="post">
-  <p style="color:red;">{{passerror}} </p>
+
     <label>Create Username: </label>
     <input type="text" name="regusername" placeholder="Username">
     <label>Create Password: </label>
     <input type="password" name="regpassword" placeholder="password">
-    <!-- <label>Confirm Password: </label>
-    <input type="password" name="confirmpassword" placeholder="password"> -->
     <button type="submit" name="button"> Submit</button>
   </form>
 
