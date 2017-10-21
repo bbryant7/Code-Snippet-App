@@ -109,7 +109,7 @@ app.get('/registration', function(req, res) {
 // REGISTRATION PAGE
 
 app.post('/registration', function(req, res) {
-  // if (req.body.regpassword === req.body.confirmpassword) {
+  if (req.body.regpassword === req.body.confirmpassword) {
     const newUser = new userDataSchema({
       username: req.body.regusername,
       password: req.body.regpassword
@@ -123,9 +123,9 @@ app.post('/registration', function(req, res) {
           available: snippets
         });
       })
-// } else {
-//   res.render('registration',{passerror: "Password does not match."})
-// }
+} else {
+  res.render('registration',{passerror: "Password does not match."})
+}
 })
 
 // ADD SNIPPET
